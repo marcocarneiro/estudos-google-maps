@@ -1,11 +1,11 @@
 # ESTUDOS GOOGLE MAPS
-Snipets de código e experimentações com recursos do Google Maps com HTML e Javascript Vanilla.
+Snipets de código e experimentações com recursos do Google Maps com HTML e Javascript Vanilla. Os códigos javascript estão internos nas páginas HTML na tag script.
 
-<p align="center"><img src="https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" width="400"></p>
+<p align="center"><img src="https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"></p>
 
 ## Como utilizar
 
-Acesse o console
+Acesse o console do Google API e obtenha a sua chave para utilização nos códigos.
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
