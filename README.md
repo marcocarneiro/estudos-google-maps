@@ -1,7 +1,7 @@
 # ESTUDOS GOOGLE MAPS
 Snipets de código e experimentações com recursos do Google Maps com HTML e Javascript Vanilla.
 
-<p align="center"><img src="chrome://new-tab-page/icons/google_logo.svg" width="400"></p>
+<p align="center"><img src="https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" width="400"></p>
 
 ## Como utilizar
 
