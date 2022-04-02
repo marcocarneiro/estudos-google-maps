@@ -3,17 +3,23 @@ Snipets de código e experimentações com recursos do Google Maps com HTML e Ja
 
 <p align="center"><img src="https://www.google.com.br/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"></p>
 
+## Arquivos
+
+- load-map-current-geolocation.html | Carrega o mapa na posição atual
+- trace-routes-in-map.html | Converte latitude e longitude em endereço e traça uma rota no mapa.
+
 ## Como utilizar
 
 Acesse o console do Google API e obtenha a sua chave para utilização nos códigos.
+APIs ativadas nesses exemplos:
 
+- Directions API
+- Geolocation API
+- Maps JavaScript API
+- Places API
+- Geocoding API
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 

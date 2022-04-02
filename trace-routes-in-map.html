@@ -36,24 +36,28 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=SUA CHAVE&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByJwRnTBJtvJitQPHEc-XxQXH01UzPl8A&callback=initMap&v=weekly"
       async></script>
     <script>      
-      let map, infoWindow;
+      let map, infoWindow, pos;
 
       function initMap() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
-              const pos = {
+              pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
               };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent("Localização aqui.");
-              infoWindow.open(map);
+              
               map.setCenter(pos);
+              const marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+              });
+
+              //Retorna endereço a partir da localização no mapa
+              getEndereco(document.getElementById('origem'), pos);
             },
             () => {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -64,21 +68,63 @@
             zoom: 16,
           });
           infoWindow = new google.maps.InfoWindow();
+          
+          //Renderiza rota no mapa
+          const directionsService = new google.maps.DirectionsService();
+          const directionsRenderer = new google.maps.DirectionsRenderer();
+          directionsRenderer.setMap(map);
+          document.getElementById('destino').addEventListener('change', function(){       
+            calculaRotaExibe(directionsService, directionsRenderer);
+          });
+
         } else {
           // Browser não suporta geolocalização
           handleLocationError(false, infoWindow, map.getCenter());
-        }
-        
+        }        
+      }
+            
+      function getEndereco(input, posicao)
+      {
+        const geocoder = new google.maps.Geocoder();
+        geocoder
+        .geocode({ location: posicao })
+        .then((response) => {
+          if (response.results[0]) {
+            input.value = response.results[0].formatted_address;
+          } else {
+            window.alert("Sem resultados");
+          }
+        })
+        .catch((e) => window.alert("Falha no Geocoder: " + e));
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(
           browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
+            ? "Erro: Falha no serviço de geolocalização."
+            : "Error: Seu navegador não suporta geolocalização."
         );
         infoWindow.open(map);
+      }
+
+      function calculaRotaExibe(directionsService, directionsRenderer) {
+        console.log(directionsService, directionsRenderer);
+        directionsService
+          .route({
+            origin: {
+              query: document.getElementById('origem').value,
+            },
+            destination: {
+              query: document.getElementById('destino').value,
+            },
+            /* Opções de TravelMode: DRIVING, WALKING, BICYCLING, TRANSIT */
+            travelMode: google.maps.TravelMode.TRANSIT,
+          })
+          .then((response) => {
+            directionsRenderer.setDirections(response);
+          })
+          .catch((e) => window.alert('Um dos endereços não existe' + status));
       }
 
     </script>
